@@ -1,11 +1,16 @@
-.card{
-    width: 500px;
-    color: rgb(11, 11, 11);
+.main{
+   display: flex;
+   flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 1rem auto;
+    padding: 1rem;
     background-color: white;
-    align-content: center;
-    margin: auto;
-    padding: 20px;
-    border-color: black;
+    border: 1px solid black;
+    box-sizing: border-box;
+    gap: 1rem;
 }
 
 

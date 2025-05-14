@@ -44,7 +44,7 @@ const DUMMY_MEAL=[
 
 const MealsList=()=>{
     return (
-        <Card>
+
         <ul className={classes.card}>
             {(DUMMY_MEAL || []).map((meal)=>{
                 return <MealsCard
@@ -55,7 +55,7 @@ const MealsList=()=>{
                 />
             })}
         </ul>
-        </Card>
+
     )
 }
 
