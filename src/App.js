@@ -1,12 +1,14 @@
 import { Fragment } from "react/jsx-runtime";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
-import classes from "./App.module.css";
+import Cart from "./components/Cart/Cart";
+
 function App() {
   return (
     <Fragment>
+      <Cart/>
       <Header/>
-      <main className={classes.main}>
+      <main>
         <Meals/>
       </main>
     </Fragment>
