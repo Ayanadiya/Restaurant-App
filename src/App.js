@@ -1,8 +1,9 @@
-import { Fragment} from "react/jsx-runtime";
+
 import { useState } from "react";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
 import Cart from "./components/Cart/Cart";
+import CartProvider from "./store/CartProvider";
 
 
 function App() {
@@ -13,13 +14,13 @@ function App() {
   const closeCartHandler=()=> setIsVisibleCart(false);
 
   return (
-    <Fragment>
+    <CartProvider>
       {isVisibleCart && <Cart onClose={closeCartHandler}/>}
       <Header onOpen={openCartHandler}/>
       <main>
         <Meals/>
       </main>
-    </Fragment>
+    </CartProvider>
   );
 }
 
