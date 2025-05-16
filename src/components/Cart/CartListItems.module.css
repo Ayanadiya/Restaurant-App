@@ -1,0 +1,50 @@
+.list {
+  border-bottom: 2px solid orangered;
+  padding: 10px;
+  width: 100%;
+  list-style: none;
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.priceItem {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* spacing between price, ×, and amount */
+  color: orangered;
+}
+
+.priceItem button{
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    padding: 8px;
+    border-radius: 4px;
+    width: 50px;
+}
+
+.action {
+  display: flex;
+  gap: 5px;
+}
+
+.action button {
+  background-color: white;
+  border: 1px solid orangered;
+  color: orangered;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.action button:hover {
+  background-color: orangered;
+  color: white;
+}

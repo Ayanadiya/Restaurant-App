@@ -3,38 +3,57 @@ import CartContext from "./cart-context";
 
 const defaultCartState={
     items:[],
-    totalAmount:0,
 }
 
 const cartReducer=(state,action)=>{
    if(action.type==="add")
    {
-    const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount;
+    let added=false
 
-    const existingItemIndex = state.items.findIndex(item => item.id === action.item.id);
-    const existingItem = state.items[existingItemIndex];
-
-    let updatedItems;
-
-    if (existingItem) {
-      const updatedItem = {
-        ...existingItem,
-        amount: existingItem.amount + action.item.amount
-      };
-      updatedItems = [...state.items];
-      updatedItems[existingItemIndex] = updatedItem;
-    } else {
-      updatedItems = state.items.concat(action.item);
+    let updatedItems=state.items.map((obj)=>{
+      if(obj.id===action.item.id)
+      {
+        obj.amount=obj.amount+action.item.amount;
+        added=true;
+      }
+      return obj;
+    });
+    if(!added)
+    {
+      updatedItems=[...state.items, action.item];
     }
+    console.log(updatedItems);
 
     return {
       items: updatedItems,
-      totalAmount: updatedTotalAmount
     };
    }
-   if(action.type==="remove")
+   if(action.type==="incrementAmount")
    {
-
+      const newItems=state.items.map((obj)=>{
+      if(obj.id===action.id)
+        {
+        obj.amount++
+        }
+      return obj
+    })
+    return{
+      items:newItems
+    }
+   }
+   if(action.type==="decrementAmount")
+   {
+      const newItems=state.items.map((obj)=>{
+      if(obj.id===action.id)
+        {
+        obj.amount--
+        }
+      return obj
+    })
+    
+    return {
+      items:newItems,
+    }
    }
    return state
 };
@@ -44,13 +63,18 @@ const CartProvider= props =>{
     const addItemToCartHandler=item =>{
         dispatchCartState({type:"add", item:item})
     };
-    const removeItemFromCartHandler=id=>{};
+    const incrementItemAmountInCartHandler=id=>{
+      dispatchCartState({type:"incrementAmount", id:id})
+    };
+    const decrementItemAmountInCartHandler=id=>{
+      dispatchCartState({type:"decrementAmount", id:id})
+    }
     const cartContext={
         items:cartState.items,
-        totalAmount:cartState.totalAmount,
         addItem:addItemToCartHandler,
-        removeItem:removeItemFromCartHandler
-    };
+        incrementAmount:incrementItemAmountInCartHandler,
+        decrementAmount:decrementItemAmountInCartHandler,
+    }
     return <CartContext.Provider value={cartContext}>
         {props.children}
     </CartContext.Provider>

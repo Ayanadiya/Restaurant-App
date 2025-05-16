@@ -48,7 +48,8 @@ const MealsList=()=>{
         <ul className={classes.card}>
             {(DUMMY_MEAL || []).map((meal)=>{
                 return <MealsCard
-                key={meal.id} 
+                key={meal.id}
+                id={meal.id} 
                 name={meal.name}
                 description={meal.description}
                 price={meal.price}
